@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  yummlyBaseUrl: `http://localhost:3000`,
+  yummlyAppIdKey: `_app_id=bf0f07aa&_app_key=09bf347e34f10a3788229fab5ac2bb77`,
+  yummlySearch: `http://localhost:3000/matches?q=`,
+  yummlyRecipe: `http://localhost:3000/matches`,
+  yummlyPictures: `&requirePictures=true`
 };
 
 /*
