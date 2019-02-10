@@ -5,7 +5,7 @@
         <div class="row">
           <img class="img-fluid rounded col-4" src="{{ recipe.imageUrlsBySize[90] }}" alt="">
           <div class="card col-8">
-              <h2 class="card-title">{{ recipe.recipeName }}</h2>
+              <h2 class="card-title"><a routerLink="recipes/{{ recipe.recipeName }}">{{ recipe.recipeName }}</a></h2>
               <p class="card-text">Ingredients: <ng-container *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}, </ng-container></p>
           </div>
         </div>

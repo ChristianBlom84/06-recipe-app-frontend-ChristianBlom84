@@ -15,7 +15,7 @@ export class RecipesListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.showAll();
+    // this.showAll();
   }
 
   showAll() {
