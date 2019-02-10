@@ -22,7 +22,7 @@ export class RecipesListComponent implements OnInit {
     this.recipes$ = this.apiService.searchRecipe('');
   }
 
-  handleClick = (searchString: string) => {
+  searchRecipe = (searchString: string) => {
     console.log(searchString);
     this.recipes$ = this.apiService.searchRecipe(searchString);
     console.log(this.recipes$);
