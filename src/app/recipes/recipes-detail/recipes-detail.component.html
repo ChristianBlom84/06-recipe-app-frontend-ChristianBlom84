@@ -1,1 +1,7 @@
-<p>recipes-detail works!</p>
+<article class="container">
+    <div class="row">
+        <div class="card">
+            {{(recipe | async).recipeName}}
+        </div>
+    </div>
+</article>

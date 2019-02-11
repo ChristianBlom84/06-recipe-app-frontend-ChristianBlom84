@@ -16,7 +16,7 @@ export class AppComponent implements AfterViewInit {
   recipesList: RecipesListComponent;
 
   title = 'recipe-app-frontend-ChristianBlom';
-  search(searchString: string) { };
+  search(searchString: string) { }
 
   constructor(
     private apiService: ApiService,
