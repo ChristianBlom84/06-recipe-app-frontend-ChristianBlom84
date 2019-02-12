@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
-    <ng-container *ngFor="let recipe of recipes$ | async; let i = index">
+    <ng-container *ngFor="let recipe of (this.apiService.getRecipeList() | async)">
       <article class="d-flex my-2 col-12 col-md-6 container">
         <div class="row">
           <img class="img-fluid rounded col-4" src="{{ recipe.imageUrlsBySize[90] }}" alt="">
           <div class="card col-8">
               <h2 class="card-title"><a routerLink="/recipes/{{ recipe.id }}">{{ recipe.recipeName }}</a></h2>
-              <p class="card-text">Ingredients: <ng-container *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}, </ng-container></p>
+              <p class="card-text"><span class="font-weight-bold">Ingredients: <br /></span> <ng-container *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}, </ng-container></p>
           </div>
         </div>
       </article>

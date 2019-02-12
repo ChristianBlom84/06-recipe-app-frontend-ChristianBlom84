@@ -2,9 +2,10 @@
 <div class="jumbotron d-flex flex-column align-items-center justify-content-between">
     <h2>Search for a recipe or ingredient</h2>
     <div class="form-group d-flex">
-        <input class="form-control" name="search" (keydown.enter)="search(searchString.value)" #searchString ngModel>
-        <button class="btn btn-primary" (click)="search(searchString.value)">Search</button>
+        <input class="form-control" name="search" (keydown.enter)="this.apiService.searchRecipe(searchString.value)" #searchString ngModel>
+        <button class="btn btn-primary" (click)="this.apiService.searchRecipe(searchString.value)">Search</button>
     </div>
 </div>
-<!-- <app-recipes-list></app-recipes-list> -->
 <router-outlet></router-outlet>
+
+<footer class="footer"></footer>

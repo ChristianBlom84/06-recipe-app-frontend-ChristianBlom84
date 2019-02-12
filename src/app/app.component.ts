@@ -3,7 +3,7 @@ import { ApiService } from './api.service';
 import { Observable } from 'rxjs';
 import { AfterViewInit, ViewChild } from '@angular/core';
 import { RecipesListComponent } from './recipes/recipes-list/recipes-list.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -20,13 +20,11 @@ export class AppComponent implements AfterViewInit {
 
   constructor(
     private apiService: ApiService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngAfterViewInit() {
-    console.log(this.recipesList);
-    this.search = (searchString: string) => {
-      this.recipesList.searchRecipe(searchString);
-    };
+    this.apiService.searchRecipe('');
   }
 }

@@ -1,7 +1,19 @@
 <article class="container">
-    <div class="row">
-        <div class="card">
-            {{(recipe | async).recipeName}}
+    <div class="row justify-content-center">
+        <div class="col-sm-8 col-md-6">
+            <div class="card" *ngIf="recipe">
+                <img class="card-img-top" src="{{ recipe.images[0].hostedLargeUrl }}" alt="">
+                <div class="card-body">
+                    <h2 class="card-title">{{ recipe.name }}</h2>
+                    <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let ingredient of recipe.ingredientLines">{{ingredient}}</li>
+                    </ul>
+                    <hr />
+                    <h3 class="mt-2">Directions</h3>
+                    <p><span class="text-info">Prep time:</span> {{recipe.totalTime}}</p>
+                    <a target="_blank" href="{{recipe.source.sourceRecipeUrl}}">Read the instructions at {{recipe.source.sourceSiteUrl}}</a>
+                </div>
+            </div>
         </div>
     </div>
 </article>

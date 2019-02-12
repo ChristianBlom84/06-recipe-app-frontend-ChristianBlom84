@@ -7,7 +7,7 @@ export const environment = {
   yummlyBaseUrl: `http://localhost:3000`,
   yummlyAppIdKey: `_app_id=bf0f07aa&_app_key=09bf347e34f10a3788229fab5ac2bb77`,
   yummlySearch: `http://localhost:3000/matches?q=`,
-  yummlyRecipe: `http://localhost:3000/matches`,
+  yummlyRecipe: `http://localhost:3000/match`,
   yummlyPictures: `&requirePictures=true`
   // yummlyBaseUrl: `http://api.yummly.com/v1/api`,
   // yummlyAppIdKey: `?_app_id=bf0f07aa&_app_key=09bf347e34f10a3788229fab5ac2bb77`,

@@ -15,16 +15,16 @@ export class RecipesListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.showAll();
   }
 
   showAll() {
-    this.recipes$ = this.apiService.searchRecipe('');
+    this.apiService.searchRecipe('');
   }
 
   searchRecipe = (searchString: string) => {
     console.log(searchString);
-    this.recipes$ = this.apiService.searchRecipe(searchString);
+    this.apiService.searchRecipe(searchString);
+    this.recipes$ = this.apiService.getRecipeList();
     console.log(this.recipes$);
   }
 
