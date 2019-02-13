@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ApiService {
   recipeList: Observable<[any]>;
+  listsOfRecipes: Observable<[any]>;
 
   constructor(
     private http: HttpClient,
@@ -26,5 +27,10 @@ export class ApiService {
 
   public getRecipeList(): Observable<[any]> {
     return this.recipeList;
+  }
+
+  public getListsOfRecipes(): Observable<[any]> {
+    this.listsOfRecipes = this.http.get<any>(`${environment.yummlyBaseUrl}/lists`);
+    return this.listsOfRecipes;
   }
 }

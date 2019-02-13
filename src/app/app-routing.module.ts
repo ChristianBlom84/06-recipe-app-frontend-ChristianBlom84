@@ -6,7 +6,7 @@ import { ListsComponent } from './lists/lists/lists.component';
 import { ListsDetailComponent } from './lists/lists-detail/lists-detail.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/recipes', pathMatch: 'full' },
+  { path: '', redirectTo: 'recipes', pathMatch: 'full' },
   { path: 'lists', component: ListsComponent },
   { path: 'lists/:id', component: ListsDetailComponent },
   { path: 'recipes', component: RecipesListComponent },
@@ -14,7 +14,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
+  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
