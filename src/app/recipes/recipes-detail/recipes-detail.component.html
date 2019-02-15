@@ -5,6 +5,7 @@
                 <img class="card-img-top" src="{{ recipe.images[0].hostedLargeUrl }}" alt="">
                 <div class="card-body">
                     <h2 class="card-title">{{ recipe.name }}</h2>
+                    <h4>Ingredients:</h4>
                     <ul class="list-group">
                         <li class="list-group-item" *ngFor="let ingredient of recipe.ingredientLines">{{ingredient}}</li>
                     </ul>

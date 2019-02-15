@@ -5,8 +5,7 @@
         <input class="form-control" name="search" (keydown.enter)="this.apiService.searchRecipe(searchString.value)" #searchString ngModel>
         <button class="btn btn-primary" (click)="this.apiService.searchRecipe(searchString.value)">Search</button>
     </div>
+    <h4><a routerLink="/lists">View your recipe lists</a></h4>
 </div>
-
-<app-lists></app-lists>
 
 <router-outlet></router-outlet>

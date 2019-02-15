@@ -33,4 +33,8 @@ export class ApiService {
     this.listsOfRecipes = this.http.get<any>(`${environment.yummlyBaseUrl}/lists`);
     return this.listsOfRecipes;
   }
+
+  public getOneListOfRecipes(listId: number): Observable<{any}> {
+    return this.http.get<any>(`${environment.yummlyBaseUrl}/lists/${listId}`);
+  }
 }
