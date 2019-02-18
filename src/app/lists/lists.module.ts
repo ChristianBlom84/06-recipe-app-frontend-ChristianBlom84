@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ListsComponent } from './lists/lists.component';
 import { ListsDetailComponent } from './lists-detail/lists-detail.component';
 import { RouterModule } from '@angular/router';
+import { MaterialModuleModule } from '../material-module/material-module.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    MaterialModuleModule
   ],
   declarations: [
     ListsComponent,

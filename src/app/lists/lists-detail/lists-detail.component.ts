@@ -19,6 +19,7 @@ export class ListsDetailComponent implements OnInit {
   ngOnInit() {
     this.apiService.getOneListOfRecipes(+this.route.snapshot.paramMap.get('id')).subscribe(value => {
       this.recipeList = value;
+      console.log(value);
     });
   }
 

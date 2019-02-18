@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RecipesModule } from './recipes/recipes.module';
 import { ListsModule } from './lists/lists.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModuleModule } from './material-module/material-module.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { ListsModule } from './lists/lists.module';
     AppRoutingModule,
     FormsModule,
     RecipesModule,
-    ListsModule
+    ListsModule,
+    BrowserAnimationsModule,
+    MaterialModuleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
