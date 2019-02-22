@@ -1,38 +1,22 @@
 <div class="container">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center w-900 mx-auto">
     <ng-container *ngFor="let recipe of (this.apiService.getRecipeList() | async)">
-      <article class="d-flex my-2 col-12 col-md-8">
+      <article class="d-flex my-2 col-12 col-md-6">
         <div class="container">
           <div class="row align-items-stretch">
             <div class="col d-flex justify-center">
-              <img class="img-fluid rounded" src="{{ recipe.imageUrlsBySize[90] }}" alt="">
-              <div class="card p-1">
+              <img class="align-self-start img-fluid rounded flex-shrink-0 flex-grow-0 mr-2" src="{{ recipe.imageUrlsBySize[90] }}" alt="">
+              <div class="card p-1 flex-grow-1">
                   <h2 class="card-title"><a routerLink="/recipes/{{ recipe.id }}">{{ recipe.recipeName }}</a></h2>
-                  <p class="card-text"><span class="font-weight-bold">Ingredients: <br /></span> <ng-container *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}, </ng-container></p>
+                  <p class="card-text">
+                    <span class="font-weight-bold">Rating: </span>{{ recipe.rating }} <br />
+                    <span class="text-info">Prep time: </span>{{ recipe.totalTimeInSeconds / 60  }} minutes
+                  </p>
               </div>
             </div>
           </div>
         </div>
       </article>
     </ng-container>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row justify-content-center">
-    <mat-card class="col-10 col-sm-8 col-m-6">
-      <mat-card-content>
-        <mat-list>
-          <mat-list-item *ngFor="let recipe of (this.apiService.getRecipeList() | async)">
-              <img class="img-fluid rounded" src="{{ recipe.imageUrlsBySize[90] }}" alt="">
-              <a routerLink="/recipes/{{ recipe.id }}">{{ recipe.recipeName }}</a>
-              <p class="card-text"><span class="font-weight-bold">Ingredients: <br /></span>
-                <ng-container *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}, </ng-container>
-              </p>
-            <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
-          </mat-list-item>
-        </mat-list>
-      </mat-card-content>
-    </mat-card>
   </div>
 </div>
