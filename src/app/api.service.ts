@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ApiService {
   recipeList: Observable<[any]>;
+  recipeListSubject = new Subject<any>();
   listsOfRecipes: Observable<[any]>;
 
   constructor(
@@ -16,9 +17,9 @@ export class ApiService {
     private router: Router
   ) { }
 
-  public searchRecipe(searchString: string): void {
+  public searchRecipe(searchString: string): Observable<[any]> {
     this.recipeList = this.http.get<any>(`${environment.yummlySearch}${searchString}`);
-    this.router.navigateByUrl('');
+    return this.recipeList;
   }
 
   public getRecipe(recipeId: string): Observable<[any]> {
@@ -26,7 +27,7 @@ export class ApiService {
   }
 
   public getRecipeList(): Observable<[any]> {
-    return this.recipeList;
+    return this.recipeListSubject.asObservable();
   }
 
   public getListsOfRecipes(): Observable<[any]> {
@@ -36,5 +37,10 @@ export class ApiService {
 
   public getOneListOfRecipes(listId: number): Observable<{any}> {
     return this.http.get<any>(`${environment.laravelBaseUrl}/recipe_lists/${listId}`);
+  }
+
+  // tslint:disable-next-line:variable-name
+  public addRecipeToList(listId: number, recipe_id: string, recipe_name: string): Observable<[any]> {
+    return this.http.post<any>(`${environment.laravelBaseUrl}/recipe_lists/${listId}`, {recipe_id, recipe_name});
   }
 }

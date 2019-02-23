@@ -38,8 +38,4 @@ export class AppComponent implements AfterViewInit {
   loggedIn() {
     return this.jwtService.loggedIn;
   }
-
-  searchRecipe(searchString: string): void {
-    this.apiService.searchRecipe(searchString);
-  }
 }

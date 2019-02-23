@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-recipes-list',
@@ -8,17 +8,18 @@ import { Observable } from 'rxjs';
   styleUrls: ['./recipes-list.component.scss']
 })
 export class RecipesListComponent implements OnInit {
-  recipes$: any;
+  recipes$: Subscription;
+  recipeList: object;
 
   constructor(
     private apiService: ApiService
   ) { }
 
   ngOnInit() {
-    this.showAll();
-    this.apiService.recipeList.subscribe(value => {
-      this.recipes$ = value;
-    });
+    // this.showAll();
+    // this.apiService.getRecipeList().subscribe(value => {
+    //   console.log(value);
+    // });
   }
 
   showAll() {
@@ -26,12 +27,11 @@ export class RecipesListComponent implements OnInit {
   }
 
   searchRecipe = (searchString: string) => {
+    searchString = 'q=' + searchString.trim().split(' ').join('+');
     console.log(searchString);
-    this.apiService.searchRecipe(searchString);
-    this.apiService.recipeList.subscribe(value => {
-      this.recipes$ = value;
+    this.apiService.searchRecipe(searchString).subscribe(recipes => {
+      this.recipeList = recipes;
     });
-    console.log(this.recipes$);
   }
 
   getRecipeList() {

@@ -5,7 +5,7 @@
         Your recipe lists:
       </mat-card-title>
       <mat-card-content>
-        <mat-list>
+        <mat-list *ngIf="recipesLists$">
           <mat-list-item *ngFor="let list of (recipesLists$ | async); last as last">
             <a routerLink="/lists/{{list.id}}">List title: {{list.title}}</a>
             <mat-divider [inset]="true" *ngIf="!last"></mat-divider>

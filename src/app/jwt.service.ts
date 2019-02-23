@@ -22,6 +22,7 @@ export class JwtService {
     }));
   }
 
+  // tslint:disable-next-line:variable-name
   register(name: string, email: string, password: string, password_confirmation: string) {
     // tslint:disable-next-line:max-line-length
     return this.httpClient.post<{token: string}>(`${environment.laravelBaseUrl}/register`, {name, email, password, password_confirmation})

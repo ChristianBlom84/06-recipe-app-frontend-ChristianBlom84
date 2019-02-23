@@ -9,8 +9,8 @@
                 <mat-card-content>
                     <h4>Ingredients:</h4>
                     <mat-list>
-                        <mat-list-item *ngFor="let ingredient of recipe.ingredientLines; last as last">
-                            {{ingredient}}
+                        <mat-list-item class="recipe-detail" *ngFor="let ingredient of recipe.ingredientLines; last as last">
+                            <span>{{ingredient}}</span>
                             <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
                         </mat-list-item>
                     </mat-list>
@@ -19,7 +19,13 @@
                     <p><span class="text-info">Prep time:</span> {{recipe.totalTime}}</p>
                     <a target="_blank" href="{{recipe.source.sourceRecipeUrl}}">Read the instructions at {{recipe.source.sourceSiteUrl}}</a>
                 </mat-card-content>
+                <app-dialog-overview-example (recipeSaved)="saveRecipeToList($event)"></app-dialog-overview-example>
             </mat-card>
         </div>
     </div>
 </article>
+
+<footer *ngIf="recipe" class="footer d-flex flex-column justify-content-center align-items-center">
+        <a href="{{recipe.attribution.url}}">{{recipe.name}} recipe</a><br />
+        <span>Information powered by  <img alt='Yummly' src='https://static.yummly.co/api-logo.png'/></span>
+</footer>

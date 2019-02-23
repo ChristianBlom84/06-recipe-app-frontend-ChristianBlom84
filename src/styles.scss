@@ -1,10 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
-
-body {
-    padding-bottom: 2rem;
-}
-
 .w-900 {
     max-width: 900px;
+}
+
+.footer {
+    background-color: #343a40;
+    color: white;
+    min-height: 4rem;
+    // position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }

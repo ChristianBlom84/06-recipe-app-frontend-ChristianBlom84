@@ -7,14 +7,4 @@
     </div>
 </nav>
 
-<h1 class="text-center">Welcome to the Tastay Recipe App!</h1>
-<div class="jumbotron d-flex flex-column align-items-center justify-content-between">
-    <h2>Search for a recipe or ingredient</h2>
-    <div class="form-group d-flex">
-        <input class="form-control" name="search" (keydown.enter)="searchRecipe(searchString.value)" #searchString ngModel>
-        <button class="btn btn-primary" (click)="searchRecipe(searchString.value)">Search</button>
-    </div>
-    <h4><a routerLink="/lists">View your recipe lists</a></h4>
-</div>
-
 <router-outlet></router-outlet>
