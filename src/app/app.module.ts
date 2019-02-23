@@ -10,11 +10,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModuleModule } from './material-module/material-module.module';
 import { JwtModule } from '@auth0/angular-jwt';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -28,12 +34,11 @@ import { LoginComponent } from './login/login.component';
     MaterialModuleModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: function tokenGetter() {
-          return localStorage.getItem('access_token');
-        },
+        tokenGetter,
         whitelistedDomains: [
           'recipeapp.test',
-          'localhost'
+          'localhost',
+          'u07.christianblom.se'
         ],
         blacklistedRoutes: [
           'localhost:4200/login',

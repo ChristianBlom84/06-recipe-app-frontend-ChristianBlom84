@@ -8,13 +8,17 @@ import { Observable } from 'rxjs';
   styleUrls: ['./recipes-list.component.scss']
 })
 export class RecipesListComponent implements OnInit {
-  recipes$: Observable<[any]>;
+  recipes$: any;
 
   constructor(
     private apiService: ApiService
   ) { }
 
   ngOnInit() {
+    this.showAll();
+    this.apiService.recipeList.subscribe(value => {
+      this.recipes$ = value;
+    });
   }
 
   showAll() {
@@ -24,8 +28,14 @@ export class RecipesListComponent implements OnInit {
   searchRecipe = (searchString: string) => {
     console.log(searchString);
     this.apiService.searchRecipe(searchString);
-    this.recipes$ = this.apiService.getRecipeList();
+    this.apiService.recipeList.subscribe(value => {
+      this.recipes$ = value;
+    });
     console.log(this.recipes$);
+  }
+
+  getRecipeList() {
+    return this.apiService.getRecipeList();
   }
 
 }

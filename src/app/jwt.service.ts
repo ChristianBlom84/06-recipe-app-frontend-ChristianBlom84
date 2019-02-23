@@ -22,8 +22,10 @@ export class JwtService {
     }));
   }
 
-  register(email: string, password: string) {
-    return this.httpClient.post<{token: string}>(`${environment.laravelBaseUrl}/register`, {email, password}).pipe(tap(res => {
+  register(name: string, email: string, password: string, password_confirmation: string) {
+    // tslint:disable-next-line:max-line-length
+    return this.httpClient.post<{token: string}>(`${environment.laravelBaseUrl}/register`, {name, email, password, password_confirmation})
+    .pipe(tap(res => {
       localStorage.setItem('access_token', res.token);
     }));
   }

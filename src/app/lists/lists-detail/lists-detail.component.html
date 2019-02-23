@@ -7,7 +7,7 @@
       <mat-card-content>
         <mat-list>
           <mat-list-item *ngFor="let recipe of recipeList.recipes">
-            <a routerLink="/recipes/{{recipe.id}}">{{recipe.name}}</a>
+            <a routerLink="/recipes/{{recipe.recipe_id}}">{{recipe.recipe_name}}</a>
           </mat-list-item>
         </mat-list>
       </mat-card-content>

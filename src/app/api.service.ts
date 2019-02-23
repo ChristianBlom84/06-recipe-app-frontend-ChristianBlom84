@@ -22,7 +22,7 @@ export class ApiService {
   }
 
   public getRecipe(recipeId: string): Observable<[any]> {
-    return this.http.get<[any]>(`${environment.yummlyRecipe}/${recipeId}`);
+    return this.http.get<[any]>(`${environment.yummlyRecipe}/${recipeId}${environment.yummlyAppIdKey}`);
   }
 
   public getRecipeList(): Observable<[any]> {
@@ -30,11 +30,11 @@ export class ApiService {
   }
 
   public getListsOfRecipes(): Observable<[any]> {
-    this.listsOfRecipes = this.http.get<any>(`${environment.yummlyBaseUrl}/lists`);
+    this.listsOfRecipes = this.http.get<any>(`${environment.laravelBaseUrl}/recipe_lists`);
     return this.listsOfRecipes;
   }
 
   public getOneListOfRecipes(listId: number): Observable<{any}> {
-    return this.http.get<any>(`${environment.yummlyBaseUrl}/lists/${listId}`);
+    return this.http.get<any>(`${environment.laravelBaseUrl}/recipe_lists/${listId}`);
   }
 }
