@@ -51,4 +51,8 @@ export class ApiService {
   public createList(title: string) {
     return this.http.post<any>(`${environment.laravelBaseUrl}/recipe_lists`, {title});
   }
+
+  public deleteRecipeFromList(listId: number, recipeId: string): Observable<any> {
+    return this.http.delete<any>(`${environment.laravelBaseUrl}/recipe_lists/${listId}/${recipeId}`);
+  }
 }

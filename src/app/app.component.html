@@ -1,6 +1,9 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark">
+<nav class="navbar navbar-expand navbar-dark bg-dark justify-content-between">
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/">Home</a>
+        <a class="nav-item nav-link" routerLink="lists" *ngIf="loggedIn()">Recipe Lists</a>
+    </div>
+    <div class="navbar-nav">
         <a class="nav-item nav-link" (click)="logout()" *ngIf="loggedIn()">Logout</a>
         <a class="nav-item nav-link" routerLink="login" *ngIf="!loggedIn()">Login</a>
         <a class="nav-item nav-link" routerLink="register" *ngIf="!loggedIn()">Register</a>

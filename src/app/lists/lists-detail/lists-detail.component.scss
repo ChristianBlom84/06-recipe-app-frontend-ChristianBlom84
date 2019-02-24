@@ -1,0 +1,14 @@
+#list-item-container {
+    a {
+        line-height: 2rem;
+    }
+
+    button, #new-recipe{
+    min-width: 0;
+    line-height: 2rem;
+    }
+
+    button.mat-primary, #new-recipe {
+        font-size: 2rem;
+    }
+}

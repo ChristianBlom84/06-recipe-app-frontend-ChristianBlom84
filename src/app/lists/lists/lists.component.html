@@ -9,7 +9,7 @@
         <mat-list *ngIf="recipesLists$">
           <mat-list-item *ngFor="let list of (recipesLists$ | async); last as last">
             <div class="d-flex justify-content-between w-100">
-              <a routerLink="/lists/{{list.id}}">List title: {{list.title}}</a>
+              <a routerLink="/lists/{{list.id}}">{{list.title}}</a>
               <button mat-raised-button color="warn" (click)="deleteList(list.id)">X</button>
             </div>
             <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
