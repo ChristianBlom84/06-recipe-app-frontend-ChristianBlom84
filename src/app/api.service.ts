@@ -17,8 +17,11 @@ export class ApiService {
     private router: Router
   ) { }
 
-  public searchRecipe(searchString: string): Observable<[any]> {
-    this.recipeList = this.http.get<any>(`${environment.yummlySearch}${searchString}`);
+  public searchRecipe(searchString: string, params?: []): Observable<[any]> {
+    params.forEach(param => {
+      searchString += param;
+    });
+    this.recipeList = this.http.get<any>(`${environment.yummlySearch}${searchString}&maxResult=100`);
     return this.recipeList;
   }
 

@@ -4,18 +4,18 @@
 
 export const environment = {
   production: false,
-  yummlyBaseUrl: `http://localhost:3000`,
-  yummlyAppIdKey: '',
-  yummlySearch: `http://localhost:3000/matches?`,
-  yummlyRecipe: `http://localhost:3000/match`,
-  yummlyPictures: `&requirePictures=true`,
-  laravelBaseUrl: `http://recipeapp.test/api`
-  // yummlyBaseUrl: `https://api.yummly.com/v1/api`,
-  // yummlyAppIdKey: `?_app_id=bf0f07aa&_app_key=09bf347e34f10a3788229fab5ac2bb77`,
-  // yummlySearch: `https://api.yummly.com/v1/api/recipes?_app_id=bf0f07aa&_app_key=09bf347e34f10a3788229fab5ac2bb77&`,
-  // yummlyRecipe: `https://api.yummly.com/v1/api/recipe`,
+  // yummlyBaseUrl: `http://localhost:3000`,
+  // yummlyAppIdKey: '',
+  // yummlySearch: `http://localhost:3000/matches?`,
+  // yummlyRecipe: `http://localhost:3000/match`,
   // yummlyPictures: `&requirePictures=true`,
-  // laravelBaseUrl: `https://u07.christianblom.se/api`
+  // laravelBaseUrl: `http://recipeapp.test/api`
+  yummlyBaseUrl: `https://api.yummly.com/v1/api`,
+  yummlyAppIdKey: `?_app_id=bf0f07aa&_app_key=09bf347e34f10a3788229fab5ac2bb77`,
+  yummlySearch: `https://api.yummly.com/v1/api/recipes?_app_id=bf0f07aa&_app_key=09bf347e34f10a3788229fab5ac2bb77&`,
+  yummlyRecipe: `https://api.yummly.com/v1/api/recipe`,
+  yummlyPictures: `&requirePictures=true`,
+  laravelBaseUrl: `https://u07.christianblom.se/api`
 };
 
 /*

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { Observable, Subscription } from 'rxjs';
+import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms'
+import { PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-recipes-list',
@@ -10,16 +12,54 @@ import { Observable, Subscription } from 'rxjs';
 export class RecipesListComponent implements OnInit {
   recipes$: Subscription;
   recipeList: object;
+  form: FormGroup;
+  allergies = [
+    { param: "&allowedAllergy[]=396^Dairy-Free", name: 'Dairy Free'},
+    { param: "&allowedAllergy[]=397^Egg-Free", name: 'Egg Free'},
+    { param: "&allowedAllergy[]=393^Gluten-Free", name: 'Gluten Free'},
+    { param: "&allowedAllergy[]=394^Peanut-Free", name: 'Peanut Free'},
+    { param: "&allowedAllergy[]=398^Seafood-Free", name: 'Seafood Free'},
+    { param: "&allowedAllergy[]=399^Sesame-Free", name: 'Sesame Free'},
+    { param: "&allowedAllergy[]=400^Soy-Free", name: 'Soy Free'},
+    { param: "&allowedAllergy[]=401^Sulfite-Free", name: 'Sulfite Free'},
+    { param: "&allowedAllergy[]=395^Tree+Nut-Free", name: 'Tree Nut Free'},
+    { param: "&allowedAllergy[]=392^Wheat-Free", name: 'Wheat Free'},
+    { param: "&allowedDiet=387^Lacto-ovo+vegetarian", name: 'Lacto-ovo Vegetarian'},
+    { param: "&allowedDiet=386^Vegan", name: 'Vegan'},
+    { param: "&allowedDiet=389^Ovo+vegetarian", name: 'Ovo Vegetarian'},
+    { param: "&allowedDiet=390^Pescetarian", name: 'Pescetarian'},
+    { param: "&allowedDiet=408^Low+FODMAP", name: 'Low + FODMAP'},
+    { param: "&allowedDiet=388^Lacto+vegetarian", name: 'Lacto Vegetarian'},
+    { param: "&allowedDiet=406^Ketogenic", name: 'Ketogenic'}
+  ];
+  length = 100;
+  pageSize = 10;
+  pageSizeOptions: number[] = [10, 25, 50, 100];
+
+  pageEvent: PageEvent;
 
   constructor(
-    private apiService: ApiService
+    private apiService: ApiService,
+    private formBuilder: FormBuilder
   ) { }
+
+  private addCheckboxes() {
+    this.allergies.map((o, i) => {
+      const control = new FormControl();
+      (this.form.controls.allergies as FormArray).push(control);
+    });
+  }
 
   ngOnInit() {
     // this.showAll();
     // this.apiService.getRecipeList().subscribe(value => {
     //   console.log(value);
     // });
+    this.form = this.formBuilder.group({
+      allergies: new FormArray([])
+    });
+
+    this.addCheckboxes();
   }
 
   showAll() {
@@ -36,6 +76,19 @@ export class RecipesListComponent implements OnInit {
 
   getRecipeList() {
     return this.apiService.getRecipeList();
+  }
+
+  submit(searchString: string) {
+    const selectedAllergyParams = this.form.value.allergies
+      .map((v, i) => v ? this.allergies[i].param : null)
+      .filter(v => v !== null);
+    searchString = 'q=' + searchString.trim().split(' ').join('+');
+
+    this.apiService.searchRecipe(searchString, selectedAllergyParams).subscribe(recipes => {
+      this.recipeList = recipes;
+      console.log(this.recipeList);
+    });
+
   }
 
 }
