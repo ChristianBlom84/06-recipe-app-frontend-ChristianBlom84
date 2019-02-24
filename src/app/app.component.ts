@@ -5,6 +5,7 @@ import { AfterViewInit, ViewChild } from '@angular/core';
 import { RecipesListComponent } from './recipes/recipes-list/recipes-list.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JwtService } from './jwt.service';
+import 'hammerjs';
 
 @Component({
   selector: 'app-root',

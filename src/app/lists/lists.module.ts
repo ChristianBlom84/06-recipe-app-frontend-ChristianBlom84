@@ -4,20 +4,32 @@ import { ListsComponent } from './lists/lists.component';
 import { ListsDetailComponent } from './lists-detail/lists-detail.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModuleModule } from '../material-module/material-module.module';
+import { ListsCreateDialogComponent, ListsCreateDialogOpenComponent } from './lists/lists-create-dialog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    MaterialModuleModule
+    MaterialModuleModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     ListsComponent,
-    ListsDetailComponent
+    ListsDetailComponent,
+    ListsCreateDialogComponent,
+    ListsCreateDialogOpenComponent
   ],
   exports: [
     ListsComponent,
-    ListsDetailComponent
+    ListsDetailComponent,
+    ListsCreateDialogComponent,
+    ListsCreateDialogOpenComponent
+  ],
+  entryComponents: [
+    ListsCreateDialogComponent,
+    ListsCreateDialogOpenComponent
   ]
 })
 export class ListsModule { }

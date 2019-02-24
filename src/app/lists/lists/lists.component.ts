@@ -18,4 +18,18 @@ export class ListsComponent implements OnInit {
     this.recipesLists$ = this.apiService.getListsOfRecipes();
   }
 
+  deleteList(id: number) {
+    this.apiService.deleteListOfRecipes(id).subscribe(response => {
+      console.log(response);
+    });
+    this.ngOnInit();
+  }
+
+  createList(title: string) {
+    this.apiService.createList(title).subscribe(response => {
+      console.log(response);
+    });
+    this.ngOnInit();
+  }
+
 }

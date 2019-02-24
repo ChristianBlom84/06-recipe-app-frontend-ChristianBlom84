@@ -39,8 +39,16 @@ export class ApiService {
     return this.http.get<any>(`${environment.laravelBaseUrl}/recipe_lists/${listId}`);
   }
 
+  public deleteListOfRecipes(listId: number): Observable<any> {
+    return this.http.delete<any>(`${environment.laravelBaseUrl}/recipe_lists/${listId}`);
+  }
+
   // tslint:disable-next-line:variable-name
   public addRecipeToList(listId: number, recipe_id: string, recipe_name: string): Observable<[any]> {
     return this.http.post<any>(`${environment.laravelBaseUrl}/recipe_lists/${listId}`, {recipe_id, recipe_name});
+  }
+
+  public createList(title: string) {
+    return this.http.post<any>(`${environment.laravelBaseUrl}/recipe_lists`, {title});
   }
 }

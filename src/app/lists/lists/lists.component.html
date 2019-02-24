@@ -1,13 +1,17 @@
 <div class="container">
   <div class="row justify-content-center">
-    <mat-card class="col-10 col-sm-8 col-m-6">
-      <mat-card-title>
-        Your recipe lists:
-      </mat-card-title>
+    <mat-card id="list-item-container" class="col-10 col-sm-8 col-m-6">
+      <div class="d-flex justify-content-between">
+        <mat-card-title>Your recipe lists:</mat-card-title>
+        <app-lists-create-dialog (listCreated)="createList($event)"></app-lists-create-dialog>
+      </div>
       <mat-card-content>
         <mat-list *ngIf="recipesLists$">
           <mat-list-item *ngFor="let list of (recipesLists$ | async); last as last">
-            <a routerLink="/lists/{{list.id}}">List title: {{list.title}}</a>
+            <div class="d-flex justify-content-between w-100">
+              <a routerLink="/lists/{{list.id}}">List title: {{list.title}}</a>
+              <button mat-raised-button color="warn" (click)="deleteList(list.id)">X</button>
+            </div>
             <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
           </mat-list-item>
         </mat-list>
@@ -15,4 +19,3 @@
     </mat-card>
   </div>
 </div>
-
