@@ -13,7 +13,7 @@ export class RecipesListComponent implements OnInit {
   recipes$: Subscription;
   recipeList: object;
   form: FormGroup;
-  allergies = [
+  params = [
     { param: "&allowedAllergy[]=396^Dairy-Free", name: 'Dairy Free'},
     { param: "&allowedAllergy[]=397^Egg-Free", name: 'Egg Free'},
     { param: "&allowedAllergy[]=393^Gluten-Free", name: 'Gluten Free'},
@@ -30,7 +30,11 @@ export class RecipesListComponent implements OnInit {
     { param: "&allowedDiet=390^Pescetarian", name: 'Pescetarian'},
     { param: "&allowedDiet=408^Low+FODMAP", name: 'Low + FODMAP'},
     { param: "&allowedDiet=388^Lacto+vegetarian", name: 'Lacto Vegetarian'},
-    { param: "&allowedDiet=406^Ketogenic", name: 'Ketogenic'}
+    { param: "&allowedDiet=406^Ketogenic", name: 'Ketogenic'},
+    { param: "&allowedCourse[]=course^course-Appetizers", name: 'Appetizers'},
+    { param: "&allowedCourse[]=course^course-Main Dishes", name: 'Main Dishes'},
+    { param: "&allowedCourse[]=course^course-Desserts", name: 'Desserts'},
+    
   ];
   length = 100;
   pageSize = 10;
@@ -44,9 +48,9 @@ export class RecipesListComponent implements OnInit {
   ) { }
 
   private addCheckboxes() {
-    this.allergies.map((o, i) => {
+    this.params.map((o, i) => {
       const control = new FormControl();
-      (this.form.controls.allergies as FormArray).push(control);
+      (this.form.controls.params as FormArray).push(control);
     });
   }
 
@@ -56,10 +60,14 @@ export class RecipesListComponent implements OnInit {
     //   console.log(value);
     // });
     this.form = this.formBuilder.group({
-      allergies: new FormArray([])
+      params: new FormArray([])
     });
 
     this.addCheckboxes();
+  }
+
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   }
 
   showAll() {
@@ -79,12 +87,12 @@ export class RecipesListComponent implements OnInit {
   }
 
   submit(searchString: string) {
-    const selectedAllergyParams = this.form.value.allergies
-      .map((v, i) => v ? this.allergies[i].param : null)
+    const selectedParams = this.form.value.params
+      .map((v, i) => v ? this.params[i].param : null)
       .filter(v => v !== null);
     searchString = 'q=' + searchString.trim().split(' ').join('+');
 
-    this.apiService.searchRecipe(searchString, selectedAllergyParams).subscribe(recipes => {
+    this.apiService.searchRecipe(searchString, selectedParams).subscribe(recipes => {
       this.recipeList = recipes;
       console.log(this.recipeList);
     });

@@ -8,10 +8,10 @@
           <input class="form-control w-50" name="search" #searchString>
           <button class="btn btn-primary">Search</button>
         </div>
-        <label class="form-check-label" formArrayName="allergies" *ngFor="let allergy of form.controls.allergies['controls']; let i = index">
+        <label class="form-check-label" formArrayName="params" *ngFor="let param of form.controls.params['controls']; let i = index">
           <div class="form-check">
             <mat-checkbox [formControlName]="i">
-            {{allergies[i].name}}
+            {{params[i].name}}
             </mat-checkbox>
           </div>
           </label>
@@ -22,22 +22,24 @@
 <div class="container">
   <div *ngIf="recipeList" class="row justify-content-center w-900 mx-auto">
     <ng-container *ngFor="let recipe of recipeList.matches; let i = index">
-      <article class="d-flex my-2 col-12 col-md-6">
-        <div class="container">
-          <div class="row align-items-stretch">
-            <div class="col d-flex justify-center">
-              <img class="align-self-start img-fluid rounded flex-shrink-0 flex-grow-0 mr-2" src="{{ recipe.imageUrlsBySize[90] }}" alt="">
-              <div class="card p-1 flex-grow-1">
-                  <h2 class="card-title"><a routerLink="/recipes/{{ recipe.id }}">{{ recipe.recipeName }}</a></h2>
-                  <p class="card-text">
-                    <span class="font-weight-bold">Rating: </span>{{ recipe.rating }} <br />
-                    <span class="text-info">Prep time: </span>{{ recipe.totalTimeInSeconds / 60  }} minutes
-                  </p>
+      <ng-container *ngIf="i < pageSize">
+        <article class="d-flex my-2 col-12 col-md-6">
+          <div class="container">
+            <div class="row align-items-stretch">
+              <div class="col d-flex justify-center">
+                <img class="align-self-start img-fluid rounded flex-shrink-0 flex-grow-0 mr-2" src="{{ recipe.imageUrlsBySize[90] }}" alt="">
+                <div class="card p-1 flex-grow-1">
+                    <h2 class="card-title"><a routerLink="/recipes/{{ recipe.id }}">{{ recipe.recipeName }}</a></h2>
+                    <p class="card-text">
+                      <span class="font-weight-bold">Rating: </span>{{ recipe.rating }} <br />
+                      <span class="text-info">Prep time: </span>{{ recipe.totalTimeInSeconds / 60  }} minutes
+                    </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </article>
+        </article>
+      </ng-container>
     </ng-container>
     <mat-paginator [length]="100"
               [pageSize]="10"
@@ -46,8 +48,6 @@
     </mat-paginator>
   </div>
 </div>
-
-{{pageEvent.pageIndex}}
 
 <footer *ngIf="recipeList" class="footer d-flex flex-column justify-content-center align-items-center">
     Recipe search powered by <a href='http://www.yummly.co/recipes'><img alt='Yummly' src='https://static.yummly.co/api-logo.png'/></a>
