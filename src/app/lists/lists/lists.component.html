@@ -6,8 +6,8 @@
         <app-lists-create-dialog (listCreated)="createList($event)"></app-lists-create-dialog>
       </div>
       <mat-card-content>
-        <mat-list *ngIf="recipesLists$">
-          <mat-list-item *ngFor="let list of (recipesLists$ | async); last as last">
+        <mat-list *ngIf="recipesLists$ | async as recipesLists">
+          <mat-list-item *ngFor="let list of recipesLists; last as last">
             <div class="d-flex justify-content-between w-100">
               <a routerLink="/lists/{{list.id}}">{{list.title}}</a>
               <button mat-raised-button color="warn" (click)="deleteList(list.id)">X</button>

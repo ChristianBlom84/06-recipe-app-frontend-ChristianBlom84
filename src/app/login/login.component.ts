@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { JwtService } from '../jwt.service';
@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private jwtService: JwtService
   ) { }
@@ -29,9 +28,6 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
-
-    // Gets the return url from the route parameters, otherwise redirects to '/' by default
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   // Form field getter. If you use the get modifier in TypeScript you create a property that you can
@@ -50,7 +46,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate([this.returnUrl]);
+          this.router.navigateByUrl('/');
         },
         error => {
           this.error = error;

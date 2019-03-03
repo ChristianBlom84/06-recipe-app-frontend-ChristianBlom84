@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { JwtService } from '../jwt.service';
@@ -19,7 +19,6 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private jwtService: JwtService
   ) { }
@@ -27,13 +26,10 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-      password_confirmation: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      password_confirmation: ['', [Validators.required, Validators.minLength(6)]]
     });
-
-    // Gets the return url from the route parameters, otherwise redirects to '/' by default
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   // Form field getter. If you use the get modifier in TypeScript you create a property that you can
@@ -48,15 +44,16 @@ export class RegisterComponent implements OnInit {
     }
 
     this.loading = true;
-    this.jwtService.register(this.f.name.value, this.f.username.value, this.f.password.value, this.f.password_confirmation.value)
+    this.jwtService.register(this.f.name.value, this.f.email.value, this.f.password.value, this.f.password_confirmation.value)
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate([this.returnUrl]);
+          this.router.navigateByUrl('/');
         },
         error => {
           this.error = error;
           this.loading = false;
+          console.log(error);
         });
   }
 }

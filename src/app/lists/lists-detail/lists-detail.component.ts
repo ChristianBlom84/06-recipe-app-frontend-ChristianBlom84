@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
-import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
@@ -26,7 +25,7 @@ export class ListsDetailComponent implements OnInit {
 
   deleteRecipe(recipeListId: number, recipeId: string) {
     this.apiService.deleteRecipeFromList(recipeListId, recipeId).subscribe(response => {
-      if (response !== "deleted_recipe") {
+      if (response !== 'deleted_recipe') {
         this.snackBar.open(response.status, 'X', {
           duration: 2000,
         });

@@ -50,7 +50,7 @@ export class ListsCreateDialogComponent {
     }`
   ]
 })
-export class ListsCreateDialogOpenComponent implements OnInit {
+export class ListsCreateDialogOpenComponent {
 
   listName: string;
 
@@ -58,8 +58,5 @@ export class ListsCreateDialogOpenComponent implements OnInit {
       public dialogRef: MatDialogRef<ListsCreateDialogOpenComponent>,
       @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) { }
-
-  ngOnInit() {
-  }
 
 }
