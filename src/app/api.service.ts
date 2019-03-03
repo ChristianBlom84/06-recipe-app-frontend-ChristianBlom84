@@ -30,7 +30,7 @@ export class ApiService {
     params.forEach(param => {
       searchString += param;
     });
-    this.recipeList = this.http.get<any>(`${environment.yummlySearch}${searchString}&maxResult=100`);
+    this.recipeList = this.http.get<any>(`${environment.yummlySearch}${searchString}&maxResult=200`);
     return this.recipeList;
   }
 

@@ -36,10 +36,12 @@ export class RecipesListComponent implements OnInit {
     { param: "&allowedCourse[]=course^course-Desserts", name: 'Desserts'},
     
   ];
-  length = 100;
-  pageSize = 10;
+  length: number = 200;
+  pageSize: number = 10;
   pageSizeOptions: number[] = [10, 25, 50, 100];
-
+  pageIndex: number = 0;
+  pageStart: number = 0;
+  pageEnd: number = 10;
   pageEvent: PageEvent;
 
   constructor(
@@ -55,10 +57,6 @@ export class RecipesListComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.showAll();
-    // this.apiService.getRecipeList().subscribe(value => {
-    //   console.log(value);
-    // });
     this.form = this.formBuilder.group({
       params: new FormArray([])
     });
@@ -66,8 +64,13 @@ export class RecipesListComponent implements OnInit {
     this.addCheckboxes();
   }
 
-  setPageSizeOptions(setPageSizeOptionsInput: string) {
-    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+  handlePage(event: object) {
+    console.log(event);
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.pageStart = this.pageSize * this.pageIndex;
+    this.pageEnd = this.pageStart + this.pageSize;
+    console.log(`PageIndex: ${this.pageIndex} PageSize: ${this.pageSize} PageStart: ${this.pageStart} PageEnd: ${this.pageEnd}`)
   }
 
   showAll() {
@@ -79,6 +82,7 @@ export class RecipesListComponent implements OnInit {
     console.log(searchString);
     this.apiService.searchRecipe(searchString).subscribe(recipes => {
       this.recipeList = recipes;
+      this.length = this.recipeList.matches.length;
     });
   }
 
@@ -93,7 +97,9 @@ export class RecipesListComponent implements OnInit {
     searchString = 'q=' + searchString.trim().split(' ').join('+');
 
     this.apiService.searchRecipe(searchString, selectedParams).subscribe(recipes => {
+      debugger;
       this.recipeList = recipes;
+      this.length = this.recipeList.matches.length;
       console.log(this.recipeList);
     });
 
