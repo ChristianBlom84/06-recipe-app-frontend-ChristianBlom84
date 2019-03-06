@@ -19,7 +19,7 @@
                     <p><span class="text-info">Prep time:</span> {{recipe.totalTime}}</p>
                     <a target="_blank" href="{{recipe.source.sourceRecipeUrl}}">Read the instructions at {{recipe.source.sourceSiteUrl}}</a>
                 </mat-card-content>
-                <app-dialog-overview-example (recipeSaved)="saveRecipeToList($event)"></app-dialog-overview-example>
+                <app-dialog-overview-example *ngIf="this.jwtService.loggedIn" (recipeSaved)="saveRecipeToList($event)"></app-dialog-overview-example>
             </mat-card>
         </div>
     </div>

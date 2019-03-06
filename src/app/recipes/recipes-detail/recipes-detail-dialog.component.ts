@@ -1,9 +1,7 @@
 import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Observable } from 'rxjs';
-import { AfterViewInit, ViewChild } from '@angular/core';
 
 export interface DialogData {
     animal: string;
@@ -26,8 +24,6 @@ export class DialogOverviewExampleComponent {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
-            console.log(result);
             this.recipeSaved.emit(result);
         });
     }
