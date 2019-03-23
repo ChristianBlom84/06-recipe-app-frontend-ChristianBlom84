@@ -32,9 +32,11 @@ export class RecipesDetailComponent implements OnInit {
   }
 
   saveRecipeToList(listId: number) {
-    this.apiService.addRecipeToList(listId, this.recipe.id, this.recipe.name).subscribe(response => {
-      console.log(`${response} from save recipe`);
-    });
+    if (listId) {
+      this.apiService.addRecipeToList(listId, this.recipe.id, this.recipe.name).subscribe(response => {
+        console.log(`${response} from save recipe`);
+      });
+    }
   }
 
 }

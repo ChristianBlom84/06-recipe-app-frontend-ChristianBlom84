@@ -1,6 +1,12 @@
-<mat-list *ngIf="recipesLists$">
-    <mat-list-item *ngFor="let list of (recipesLists$ | async); last as last">
+<mat-list *ngIf="recipesLists">
+    <mat-list-item *ngFor="let list of recipesLists; last as last">
         <button mat-raised-button color="accent" [mat-dialog-close]="list.id">{{list.title}}</button>
         <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
     </mat-list-item>
 </mat-list>
+<p *ngIf="isLoading">Loading recipe lists...</p>
+<div *ngIf="!isLoading">
+    <p>You have no recipe lists!</p>
+    <button mat-raised-button color="primary" mat-dialog-close routerLink="lists">Create a list?</button>
+</div>
+

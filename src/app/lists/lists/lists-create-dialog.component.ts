@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { DialogData } from 'src/app/recipes/recipes-detail/recipes-detail-dialog.component';
+// import { DialogData } from 'src/app/recipes/recipes-detail/recipes-detail-dialog.component';
 
 export interface DialogData {
   listName: string;
