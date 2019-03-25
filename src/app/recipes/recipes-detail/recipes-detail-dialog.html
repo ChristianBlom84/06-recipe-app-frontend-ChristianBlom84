@@ -6,7 +6,9 @@
 </mat-list>
 <p *ngIf="isLoading">Loading recipe lists...</p>
 <div *ngIf="!isLoading">
-    <p>You have no recipe lists!</p>
-    <button mat-raised-button color="primary" mat-dialog-close routerLink="lists">Create a list?</button>
+    <ng-container *ngIf="!recipesLists">
+        <p>You have no recipe lists!</p>
+        <button mat-raised-button color="primary" mat-dialog-close routerLink="lists">Create a list?</button>
+    </ng-container>
 </div>
 
